@@ -2,4 +2,4 @@
 created readme
 connected render
 class is Bank 
-attributes is name, account number, balance
+my attributes are bank_name:(String) bank_account:(String) bank_balance:(Number)
