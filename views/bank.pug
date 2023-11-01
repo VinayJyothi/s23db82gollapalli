@@ -5,6 +5,21 @@ block content
         - let results=[{bank_name:"vny", bank_account:"vny128765", bank_balance:23543},{bank_name:"sbi", bank_account:"sbi128765", bank_balance:10543},{bank_name:"canara", bank_account:"canr128765", bank_balance:19543}]
           div(class="row")
             each form,item in results
-                div(class = "col-sm-2 bg-danger") #{form.bank_name}              
-                div(class = "col-sm-2 bg-danger") #{form.bank_account}                
-                div(class = "col-sm-2 bg-danger") #{form.bank_balance}
+                div(class = "col-sm-2 bg-danger" onclick=`buy(${item})`) #{form.bank_name}              
+                div(class = "col-sm-2 bg-danger" onclick=`buy(${item})`) #{form.bank_account}                
+                div(class = "col-sm-2 bg-danger" onclick=`buy(${item})`) #{form.bank_balance}
+                hr
+    
+    br
+    h5= 'buy'
+
+    div(class="container-fluid")
+      each bank,index in results
+        div(class="row", onclick=`buy(${index})`)
+          div(class="col-sm-2") <br>bank #{index}: #{bank.bank_name} account:#{bank.bank_account} balance:#{bank.bank_balance}
+
+    script.
+        function buy(itemNo)
+        {
+            alert(`You purchased Item ${itemNo+1}`)
+        }
