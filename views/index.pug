@@ -1,6 +1,14 @@
 extends layout
-
 block content
   h1= title
   p Welcome to vinny gollapalli page  #{title}
-  button( type="button", style = "font-family:italic; color:black;" class="btn btn-primary") Press Me
+  button( type="button", onclick="goFaster()" style = "font-family:italic; color:black;" class="btn btn-primary") Press Me
+  div(id ="faster") MPH xxx with change xxxx. 
+  script. 
+    let mph=20
+    let change=1
+    function goFaster(){
+    mph=mph+change
+    change=change+1
+    document.getElementById("faster").innerHTML=`MPH ${mph} with change ${change}`
+    }
