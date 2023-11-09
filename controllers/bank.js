@@ -31,3 +31,17 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+
+// VIEWS
+// Handle a show all view
+exports.bank_view_all_Page = async function(req, res) {
+    try{
+    thebank = await bank.find();
+    res.render('bank', { title: 'bank Search Results', results: thebank });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
