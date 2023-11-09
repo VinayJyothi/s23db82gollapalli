@@ -45,6 +45,18 @@ exports.bank_view_all_Page = async function(req, res) {
     }
     };
     
+// for a specific Costume.
+exports.bank_detail = async function(req, res) {
+console.log("detail" + req.params.id)
+try {
+result = await bank.findById( req.params.id)
+res.send(result)
+} catch (error) {
+res.status(500)
+res.send(`{"error": document for id ${req.params.id} not found`);
+}
+};
+    
 // Handle Costume create on POST.
 exports.bank_create_post = async function(req, res) {
     console.log(req.body)
@@ -65,4 +77,10 @@ exports.bank_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+
+    // GET request for one costume.
+//router.get('/bank/:id', bank_controllers.bank_detail);
+
+
+
     
