@@ -7,10 +7,11 @@
 //});
 
 var express = require('express');
-const bank_controllers= require('../controllers/bank');
+const bank_controlers= require('../controllers/bank');
 var router = express.Router();
-/* GET costumes */
-router.get('/', bank_controllers.bank_view_all_Page );
-router.get('/bank/:id', bank_controllers.bank_detail);
+/* GET bank */
+router.get('/', bank_controlers.bank_view_all_Page );
+//bank details
+router.get('/bank/:id', bank_controlers.bank_detail);
 
 module.exports = router;
