@@ -1,4 +1,4 @@
-/*var bank = require('../models/bank');
+var bank = require('../models/bank');
 // List of all banks
 exports.bank_list = function(req, res) {
 res.send('NOT IMPLEMENTED: bank list');
@@ -8,7 +8,7 @@ res.send('NOT IMPLEMENTED: bank list');
 res.send('NOT IMPLEMENTED: bank detail: ' + req.params.id);
 };*/
 // Handle bank create on POST.
-/*exports.bank_create_post = function(req, res) {
+exports.bank_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: bank create POST');
 };
 // Handle bank delete form on DELETE.
@@ -82,8 +82,8 @@ exports.bank_create_post = async function(req, res) {
 
     // GET request for one bank.
 //router.get('/bank/:id', bank_controllers.bank_detail);
-*/
 
+/*
 var bank = require('../models/bank');
  
 // List of all flights
@@ -146,4 +146,4 @@ res.send(`{"error": document for id ${req.params.id} not found`);
  
 exports.bank_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: bank delete DELETE ' + req.params.id);
-};
+};*/
