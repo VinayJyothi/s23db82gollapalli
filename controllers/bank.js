@@ -3,18 +3,45 @@ var bank = require('../models/bank');
 exports.bank_list = function(req, res) {
 res.send('NOT IMPLEMENTED: bank list');
 };
-// for a specific bank.
-/*exports.bank_detail = function(req, res) {
+/* for a specific bank.
+exports.bank_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: bank detail: ' + req.params.id);
 };*/
 // Handle bank create on POST.
 exports.bank_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: bank create POST');
 };
-// Handle bank delete form on DELETE.
+/*// Handle bank delete form on DELETE.
 exports.bank_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: bank delete DELETE ' + req.params.id);
+};*/
+// Handle bank delete on DELETE.
+exports.bank_delete = async function(req, res) {
+console.log("delete " + req.params.id)
+try {
+result = await bank.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
 };
+// Handle building the view for creating a costume.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.bank_create_Page = function(req, res) {
+console.log("create view")
+try{
+res.render('bankcreate', { title: 'bank Create'});
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
+
+
 // Handle bank update form on PUT.
 exports.bank_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: bank update PUT' + req.params.id);
@@ -57,7 +84,19 @@ exports.bank_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
-
+// Handle a show one view with id specified by query
+exports.bank_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await bank.findById( req.query.id)
+    res.render('bankdetail', { title: 'bank detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+        
     
 // Handle bank create on POST.
 exports.bank_create_post = async function(req, res) {
@@ -77,6 +116,29 @@ exports.bank_create_post = async function(req, res) {
     catch(err){
     res.status(500);
     res.send(`{"error": ${err}}`);
+    }
+    };
+// Handle Costume update form on PUT.
+exports.bank_update_put = async function(req, res) {
+    console.log(`update on bank ${req.params.bank} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await bank.findById( req.params.bank)
+    // Do updates of properties
+    if(req.body.bank_name)
+    toUpdate.bank_name = req.body.bank_name;
+    if(req.body.account) toUpdate.account = req.body.account;
+    if(req.body.balance) toUpdate.balance = req.body.balance;
+    if(req.body.checkboxbalance) toUpdate.balance = true;
+    else toUpdate.same = false;
+    
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for bank ${req.params.bank}
+    failed`);
     }
     };
 

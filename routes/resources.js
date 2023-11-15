@@ -17,8 +17,10 @@ router.put('/bank/:id', bank_controller.bank_update_put);
 router.get('/bank/:id', bank_controller.bank_detail);
 // GET request for list of all Costume items.
 router.get('/bank', bank_controller.bank_list);
+/* GET detail bank page */
+//router.get('/detail', bank_controllers.bank_view_one_Page);
 
-// Handle Costume update form on PUT.
+/* Handle Costume update form on PUT.
 exports.bank_update_put = async function(req, res) {
     console.log(`update on bank ${req.params.bank} with body
     ${JSON.stringify(req.body)}`)
@@ -40,7 +42,7 @@ exports.bank_update_put = async function(req, res) {
     res.send(`{"error": ${err}: Update for bank ${req.params.bank}
     failed`);
     }
-    };
+    };*/
 
 
 module.exports = router;
