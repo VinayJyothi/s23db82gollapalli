@@ -1,33 +1,32 @@
 extends layout
+ 
 block content
- h1= title
- form(id='bankForm', action="/resource/bank", method="POST")
-  div.form-group
-    label.bankAttr(for='bank_name') bank name
-    input#bank_name(type='text', name='bank_name')
-  div.form-group
-    label.bankAttr(for='bank_account') bank account
-    input#bank_acount(type='text', name='bank_account')
-  div.form-group
-    label.bankAttr(for='bank_balance') bank balance
-    input#bank_balance(type='number', name='bank_balance')
-  input(type="submit")
-
- script.
-  document.forms['bankForm'].addEventListener('submit', (event) => {
-  event.preventDefault();
-  // TODO do something here to show user that form is being submitted
-  fetch(event.target.action, {
-    method: 'POST',
-    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-    }).then((resp) => {
-    return resp.json(); // or resp.text() or whatever the server sends
-    }).then((body) => {
-    alert("Save succeded")
-    // TODO handle body
-    }).catch((error) => {
-    // TODO handle error
-    alert("Save failed " + error )
-    });
-   });
-
+    h1= title
+    form(id='bankForm', action="/resources/bank", method="POST")
+        div.form-group
+            label.bankAttr(for='bank_name') Bank Name
+            input#bank_name(type='text', name='bank_name')
+        div.form-group
+            label.bankAttr(for='bank_account') Bank Account
+            input#bank_account(type='text', name='bank_account')
+        div.form-group
+            label.bankAttr(for='bank_balance') Bank Balance
+            input#bank_balance(type='number', name='bank_balance')
+        input(type="submit")
+    script.
+        document.forms['bankForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+                method: 'POST',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Save succeded")
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Save failed " + error )
+            });
+        });

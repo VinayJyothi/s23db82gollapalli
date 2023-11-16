@@ -1,21 +1,22 @@
 extends layout
+ 
 block content
- link(rel="stylesheet", href="public/stylesheets/style.css")
- h1= title
- - let bankid = toShow._id
- - let bank_name = toShow.bank_name
- - let bank_account = toShow.bank_account
- - let bank_balance = toShow.bank_balance
- div
-  div.row
-    div(class='bankAttr mr-3') bank ID is:
-    div #{bankid}
-  div.row
-    div(class='bankAttr mr-3') bank Name is:
-    div #{bank_name}
-  div.row
-    div(class='bankAttr mr-3') bank account is:
-    div #{bank_account}
-  div.row
-    div(class='bankAttr mr-3') bank balance is:
-    div #{bank_balance}
+    h1= title
+ 
+    - let bankid = toShow._id
+    - let bank_name = toShow.bank_name
+    - let bank_account  = toShow.bank_account
+    - let bank_balance  = toShow.bank_balance
+    div
+        div.row
+            div(class='bankAttr mr-3') Bank ID is:
+            div #{bankid}
+        div.row
+            div(class='bankAttr mr-3') Bank Name is:
+            div #{bank_name}
+        div.row
+            div(class='bankAttr mr-3') Bank Account is:
+            div #{bank_account}
+        div.row
+            div(class='bankAttr mr-3') Bank Balance is:
+            div #{bank_balance}

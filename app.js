@@ -41,7 +41,7 @@ app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
 app.use('/users', usersRouter);
 app.use('/resources', resourcesRouter);
-//app.use('/Costume',schemaCostume);
+//app.use('/bank',schemaCostume);
 
 // We can seed the collection if needed on server start
 async function recreateDB(){
@@ -67,14 +67,17 @@ async function recreateDB(){
   });
   }
   let reseed = true;
-  if (reseed) {recreateDB();}
-  
+  if (reseed) {
+     recreateDB();
+}
+ /* let reseed = true;
+  if (reseed) {recreateDB();
+  /*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

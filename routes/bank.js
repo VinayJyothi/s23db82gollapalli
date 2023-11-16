@@ -1,6 +1,3 @@
-//var express = require('express');
-//var router = express.Router();
-
 /* GET home page. */
 //router.get('/', function(req, res, next) {
   //res.render('bank', { title: 'Search Results' });
@@ -17,5 +14,8 @@ router.get('/bank/:id', bank_controllers.bank_detail);
 router.get('/detail', bank_controllers.bank_view_one_Page);
 /* GET create bank page */
 router.get('/create', bank_controllers.bank_create_Page);
+/* GET create update page */
+router.get('/update', bank_controllers.bank_update_Page);
+/* Get delete bank page*/
+router.get('/delete/', bank_controllers.bank_delete_Page)
 module.exports = router;
-//link(rel="stylesheet", href="/stylesheets/style.css")
