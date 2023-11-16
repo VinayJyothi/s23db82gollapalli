@@ -20,29 +20,5 @@ router.get('/bank', bank_controller.bank_list);
 /* GET detail bank page */
 //router.get('/detail', bank_controllers.bank_view_one_Page);
 
-/* Handle Costume update form on PUT.
-exports.bank_update_put = async function(req, res) {
-    console.log(`update on bank ${req.params.bank} with body
-    ${JSON.stringify(req.body)}`)
-    try {
-    let toUpdate = await bank.findById( req.params.bank)
-    // Do updates of properties
-    if(req.body.bank_name)
-    toUpdate.bank_name = req.body.bank_name;
-    if(req.body.account) toUpdate.account = req.body.account;
-    if(req.body.balance) toUpdate.balance = req.body.balance;
-    if(req.body.checkboxbalance) toUpdate.balance = true;
-    else toUpdate.same = false;
-    
-    let result = await toUpdate.save();
-    console.log("Sucess " + result)
-    res.send(result)
-    } catch (err) {
-    res.status(500)
-    res.send(`{"error": ${err}: Update for bank ${req.params.bank}
-    failed`);
-    }
-    };*/
-
 
 module.exports = router;

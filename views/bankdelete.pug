@@ -1,51 +1,51 @@
 extends layout
+
 block content
-  h1= title
-    - let bankid = toShow._id
-    - let bank_name = toShow.bank_name
-    - let bank_account = toShow.bank_account
-    - let bank_balance = toShow.bank_balance
-    - let actionid = "/resources/bank/" + bankid
- 
+    h1= title
+    
+    if (toShow != null)
+        h2 No instance to delete
+    else
+        - let bankid = toShow.id
+        - let bank_name  = toShow.bank_name
+        - let bank_account = toShow.bank_account
+        - let bank_balance = toShow.bank_balance
+        - let actionid = "/resources/bank/" + bankid
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='bankAttr mr-3') Bank ID is:
+                div #{bankid}
+            div.row
+                div(class='bankAttr mr-3') Bank Name is:
+                div #{bank_ame}
+            div.row
+                div(class='bankAttr mr-3') Bank Account is:
+                div #{bank_account}
+            div.row
+                div(class='bankAttr mr-3') Bank Balance is:
+                div #{bank_balance}
+        
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
     script.
-      let actionid = "#{actionid}"
- 
-    div
-      div.row
-        div(class='organisationAttr mr-3') organisation ID is:
-          div #{bankid}
-      div.row
-        div(class='organisationAttr mr-3') organisation bank_name is:
-          div #{bank_name}
-      div.row
-        div(class='organisationAttr mr-3') organisation account is:
-          div #{bank_account}
-      div.row
-        div(class='organisationAttr mr-3') organisation balance is:
-          div #{bank_balance}
-      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
- 
+            function cancel() {
+            // Go back to the home page for the deodorant collection
+            window.location.href='/bank'
+            }
     script.
-      function cancel() {
-        // Go back to the home page for the costume collection
-        window.location.href='/bank'
-      }
- 
-    script.
-      function deleteOnid() {
-        console.log("starting delete");
-        // delete first
-        fetch(actionid, {
-          method: 'DELETE' // Don't need a body for the delete
-        }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-          alert("Delete succeeded");
-          window.location.href='/bank';
-          // TODO handle body
-        }).catch((error) => {
-          // TODO handle error
-          alert("Delete failed " + error );
-        });
-      }
+                function deleteOnid() {
+                // delete first
+                fetch(actionid, {
+                method: 'DELETE' // Don't need a body for the delete
+                }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/bank'
+                // TODO handle body
+                }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+                });
+                }
