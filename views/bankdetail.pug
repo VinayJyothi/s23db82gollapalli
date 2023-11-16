@@ -1,12 +1,14 @@
 extends layout
  
 block content
-    h1= title
- 
+  h1= title
+  if(toShow == null)
+    h2 No instance of this detail
+  else  
     - let bankid = toShow._id
-    - let bank_name = toShow.bank_name
-    - let bank_account  = toShow.bank_account
-    - let bank_balance  = toShow.bank_balance
+    - let bank_name  = toShow.bank_name
+    - let bank_account = toShow.bank_account
+    - let bank_balance = toShow.bank_balance
     div
         div.row
             div(class='bankAttr mr-3') Bank ID is:

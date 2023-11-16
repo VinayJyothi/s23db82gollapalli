@@ -17,5 +17,5 @@ router.get('/create', bank_controllers.bank_create_Page);
 /* GET create update page */
 router.get('/update', bank_controllers.bank_update_Page);
 /* Get delete bank page*/
-router.get('/delete/', bank_controllers.bank_delete_Page)
+router.get('/delete', bank_controllers.bank_delete_Page)
 module.exports = router;

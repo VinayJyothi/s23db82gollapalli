@@ -16,32 +16,32 @@ res.send('NOT IMPLEMENTED: bank detail: ' + req.params.id);
 res.send('NOT IMPLEMENTED: bank delete DELETE ' + req.params.id);
 };*/
 // Handle a delete one view with id from query
-exports.bank_delete_Page = async function(req, resp) {
+exports.bank_delete_Page = async function(req, res) {
     console.log("Delete view for id " + req.query.id)
     try{
-    result = await bank.findById(req.query._id)
-    console.log(result);
-    resp.render('bankdelete', { title: 'Bank Delete', toShow:
+    result = await bank.findById(req.query.id)
+    //console.log(result);
+    res.render('bankdelete', { title: 'Bank Delete', toShow:
     result });
     }
     catch(err){
-    resp.status(500)
-    resp.send(`{'error': '${err}'}`);
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
     };
    
     
 // Handle bank delete on DELETE.
 exports.bank_delete = async function(req, res) {
-console.log("delete " + req.params.id)
-try {
-result = await bank.findByIdAndDelete( req.params.id)
-console.log("Removed " + result)
-res.send(result)
-} catch (err) {
-res.status(500)
-res.send(`{"error": Error deleting ${err}}`);
-}
+    console.log("delete " + req.params.id)
+    try {
+        result = await bank.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 // // Handle bank update form on PUT.
 // exports.bank_update_put = function(req, res) {
@@ -111,7 +111,31 @@ exports.bank_update_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
+
+    // Handle Costume update form on PUT.
+    //debugger;
     
+exports.bank_update_put = async function(req, res) {
+    console.log(`update on bank ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await bank.findById( req.params.id)
+        // Do updates of properties
+        //if(req.body._id)
+        if(req.body.bank_name) toUpdate.bank_name = req.body.bank_name;
+        if(req.body.bank_account) toUpdate.bank_account = req.body.bank_account;
+        if(req.body.bank_balance) toUpdate.bank_balance = req.body.bank_balance;
+        //if(req.body.checkboxbalance) toUpdate.balance = true;
+        //else toUpdate.same = false;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
+    }
+};   
 // Handle bank create on POST.
 exports.bank_create_post = async function(req, res) {
     console.log(req.body)
@@ -143,32 +167,5 @@ exports.bank_create_Page = function(req, res) {
     catch(err){
     res.status(500)
     res.send(`{'error': '${err}'}`);
-    }
-    };
-
-// Handle Costume update form on PUT.
-debugger;
-exports.bank_update_put = async function(req, res) {
-    debugger;
-    console.log(`update on bank ${req.params.bank} with body
-    ${JSON.stringify(req.body)}`)
-    try {
-    let toUpdate = await bank.findById( req.params.bank)
-    // Do updates of properties
-    debugger
-    if(req.body._id)
-     if(req.body.bank_name) toUpdate.bank_name = req.body.bank_name;
-     if(req.body.account) toUpdate.account = req.body.bank_account;
-     if(req.body.balance) toUpdate.balance = req.body.bank_balance;
-     if(req.body.checkboxbalance) toUpdate.balance = true;
-    else toUpdate.same = false;
-    
-    let result = await toUpdate.save();
-    console.log("Sucess " + result)
-    res.send(result)
-    } catch (err) {
-    res.status(500)
-    res.send(`{"error": ${err}: Update for bank ${req.params.id}
-    failed`);
     }
     };

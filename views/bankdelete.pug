@@ -1,12 +1,10 @@
 extends layout
-
 block content
     h1= title
-    
-    if (toShow != null)
+    if (toShow == null)
         h2 No instance to delete
     else
-        - let bankid = toShow.id
+        - let bankid = toShow._id
         - let bank_name  = toShow.bank_name
         - let bank_account = toShow.bank_account
         - let bank_balance = toShow.bank_balance
@@ -34,18 +32,19 @@ block content
             window.location.href='/bank'
             }
     script.
-                function deleteOnid() {
+            function deleteOnid() {
+                //console.log("starting delete");
                 // delete first
                 fetch(actionid, {
                 method: 'DELETE' // Don't need a body for the delete
                 }).then((resp) => {
                 return resp.json(); // or resp.text() or whatever the server sends
                 }).then((body) => {
-                alert("Delete succeded")
-                window.location.href='/bank'
+                alert("Delete succeeded");
+                window.location.href='/bank';
                 // TODO handle body
                 }).catch((error) => {
                 // TODO handle error
-                alert("Delete failed " + error )
+                alert("Delete failed " + error );
                 });
-                }
+            }
