@@ -16,13 +16,13 @@ block content
     - let actionid = "/resources/bank/" + bankid
     form(id='bankForm', action= actionid, method="PUT")
      div.form-group
-        label.bankAttr(for='bank_name') Deodorant Name
+        label.bankAttr(for='bank_name') Bank  Name
         input#bank_name(type='text', name='bank_name', value= bank_name )
      div.form-group
-        label.bankAttr(for='bank_account') Deodorant Type
+        label.bankAttr(for='bank_account') Bank Account
         input#bank_account(type='text', name='bank_account', value= bank_account )
      div.form-group
-        label.bankAttr(for='bank_balance') Deodorant cost
+        label.bankAttr(for='bank_balance') Bank Balance
         input#bank_balance(type='number', name='bank_balance', value= bank_balance )
      input(type="submit")
     script.
